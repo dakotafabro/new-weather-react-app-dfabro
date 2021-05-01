@@ -1,26 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
-import DailyGreeting from "./DailyGreeting";
+import Weather from "./Weather";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>
-          <DailyGreeting />
-        </h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container App border p-5 mt-5 shadow">
+      <div>
+        <Weather />
+      </div>
     </div>
   );
 }
-
-export default App;

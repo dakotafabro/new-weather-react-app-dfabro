@@ -1,0 +1,66 @@
+.Weather .search-for-city .search-entry {
+  margin: 5px;
+  border: none;
+  background: #e0dede;
+  border-radius: 10px;
+  text-align: left;
+  color: #1f1f20;
+  padding: 2px 5px;
+}
+
+.Weather .search-for-city .search-button {
+  margin: 2px;
+  border-radius: 10px;
+  border: none;
+  padding: 2px 10px;
+  background: rgb(70, 70, 248);
+  color: white;
+}
+
+.Weather .search-for-city .current-button {
+  margin: 2px;
+  border-radius: 10px;
+  border: none;
+  padding: 2px 10px;
+  background: rgb(209, 140, 36);
+  color: white;
+}
+
+.Weather .description-and-icon .weather-conditions {
+  list-style-type: none;
+  text-align: left;
+  font-size: 15px;
+}
+
+.Weather .weather-info .main-temp {
+  padding: 50px;
+}
+
+.Weather .main-temp .high-and-low-temp {
+  font-size: 25px;
+}
+
+.Weather .main-temp .current-temp {
+  font-size: 75px;
+}
+
+.Weather .desired-city-info .welcome-to-city {
+  font-size: 50px;
+}
+
+.Weather .desired-city-info .current-date {
+  font-size: 25px;
+}
+
+.Weather .description-and-icon {
+  vertical-align: middle;
+  padding: 50px;
+}
+
+.Weather .description-and-icon .weather-description {
+  font-size: 30px;
+}
+
+.Weather .description-and-icon .weather-icon {
+  font-size: 75px;
+}
