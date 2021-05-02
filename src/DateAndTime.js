@@ -43,7 +43,7 @@ export default function DateAndTime() {
   }
 
   let currentFullDay = fullDays[now.getDay()];
-  let currentShortDay = shortDays[now.getDay()];
+  //   let currentShortDay = shortDays[now.getDay()];
   let currentMonth = months[now.getMonth()];
   let currentYear = now.getFullYear();
 
