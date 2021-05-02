@@ -7,7 +7,7 @@ import ReactAnimatedWeather from "react-animated-weather";
 
 export default function Weather(props) {
   let [city, setCity] = useState(null);
-  let [greeting, setGreeting] = useState(
+  let [greetingIcon, setGreetingIcon] = useState(
     <span>
       <ReactAnimatedWeather
         icon="CLEAR_DAY"
@@ -15,8 +15,10 @@ export default function Weather(props) {
         size={75}
         animate={true}
       />{" "}
-      Welcome to...
     </span>
+  );
+  let [greeting, setGreeting] = useState(
+    <span>{greetingIcon}Welcome to...</span>
   );
 
   function updateCity(event) {
@@ -25,7 +27,12 @@ export default function Weather(props) {
 
   function showWeather(response) {
     let temp = response.data.main.temp;
+    let icon = response.data.weather[0].icon;
+    let iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
     alert(Math.round(temp));
+    alert(icon);
+    // setGreetingIcon still needs to be updated. Currently not showing up when it is supposed to
+    setGreetingIcon(<img src={iconUrl} alt="Weather Icon" />);
     setGreeting(<span>Welcome to {city}</span>);
   }
 
