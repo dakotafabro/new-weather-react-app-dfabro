@@ -3,3 +3,7 @@
   border-radius: 10px;
   font-family: "Lexend", sans-serif;
 }
+
+@media (max-width: 576px) {
+  padding: 1rem !important;
+}
