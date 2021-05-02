@@ -121,7 +121,7 @@ export default function Weather() {
 
   return (
     <div className="Weather">
-      <form className="search-for-city" onSubmit={getWeather}>
+      <form className="search-for-city mb-5" onSubmit={getWeather}>
         <input
           className="search-entry"
           type="search"
