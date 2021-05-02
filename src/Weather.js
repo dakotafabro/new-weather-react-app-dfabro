@@ -3,6 +3,8 @@ import "./Weather.css";
 import axios from "axios";
 import ReactAnimatedWeather from "react-animated-weather";
 
+// to do: add correct date and time to UI
+
 export default function Weather(props) {
   let [city, setCity] = useState(null);
   let [greeting, setGreeting] = useState(
