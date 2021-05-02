@@ -13,7 +13,7 @@
   border-radius: 10px;
   border: none;
   padding: 2px 10px;
-  background: rgb(70, 70, 248);
+  background: #4646f8;
   color: white;
 }
 
@@ -22,7 +22,7 @@
   border-radius: 10px;
   border: none;
   padding: 2px 10px;
-  background: rgb(209, 140, 36);
+  background: #d18c24;
   color: white;
 }
 
@@ -63,4 +63,10 @@
 
 .Weather .description-and-icon .weather-icon {
   font-size: 75px;
+}
+
+.Weather .weather-info .conversion-links {
+  vertical-align: middle;
+  position: relative;
+  top: -40px;
 }
