@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function DateAndTime() {
-  let shortDays = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
+  //   let shortDays = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
 
   let fullDays = [
     "Sunday",
