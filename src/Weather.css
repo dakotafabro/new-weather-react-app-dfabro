@@ -122,4 +122,8 @@
   .Weather .description-and-icon .weather-description {
     font-size: 25px;
   }
+
+  .Weather {
+    margin: 0;
+  }
 }

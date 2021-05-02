@@ -85,7 +85,7 @@ export default function Weather() {
     setGreetingIcon(null);
     setGreeting(
       <span>
-        <img src={iconUrl} alt="Weather Icon" />
+        {currentIcon}
         <br /> Welcome to {city}
       </span>
     );
@@ -121,7 +121,7 @@ export default function Weather() {
 
   return (
     <div className="Weather">
-      <form className="search-for-city mt-3" onSubmit={getWeather}>
+      <form className="search-for-city" onSubmit={getWeather}>
         <input
           className="search-entry"
           type="search"
