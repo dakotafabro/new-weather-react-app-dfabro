@@ -4,7 +4,7 @@
   font-family: "Lexend", sans-serif;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 458px) {
   .App {
     padding: 1rem !important;
   }

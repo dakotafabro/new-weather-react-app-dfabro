@@ -110,7 +110,7 @@
   color: var(--tertiary-color);
 }
 
-@media (max-width: 576px) {
+@media (max-width: 458px) {
   .Weather .desired-city-info .welcome-to-city {
     font-size: 45px;
   }
