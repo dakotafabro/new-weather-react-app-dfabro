@@ -2,10 +2,19 @@ import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
 import ReactAnimatedWeather from "react-animated-weather";
+import DateAndTime from "./DateAndTime";
 
 // to do: add correct date and time to UI
 
 export default function Weather(props) {
+  let [icon, setIcon] = useState("--");
+  let [humidity, setHumidity] = useState("--");
+  let [wind, setWind] = useState("--");
+  let [feelsLike, setFeelsLike] = useState("--");
+  let [description, setDescription] = useState("--");
+  let [lowTemp, setLowTemp] = useState("--");
+  let [highTemp, setHighTemp] = useState("--");
+  let [currentTemp, setCurrentTemp] = useState("--");
   let [city, setCity] = useState(null);
   let [greetingIcon, setGreetingIcon] = useState(
     <span>
@@ -26,14 +35,31 @@ export default function Weather(props) {
   }
 
   function showWeather(response) {
+    let humidity = response.data.main.humidity;
+    let wind = response.data.wind.speed;
+    let feelsLike = response.data.main.feels_like;
+    let description = response.data.weather[0].description.toUpperCase();
+    let lowTemp = response.data.main.temp_min;
+    let highTemp = response.data.main.temp_max;
     let temp = response.data.main.temp;
     let icon = response.data.weather[0].icon;
     let iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-    alert(Math.round(temp));
-    alert(icon);
+
+    setHumidity(humidity);
+    setWind(Math.round(wind));
+    setFeelsLike(Math.round(feelsLike));
+    setDescription(description);
+    setLowTemp(Math.round(lowTemp));
+    setHighTemp(Math.round(highTemp));
+    setCurrentTemp(Math.round(temp));
+    setIcon(<img src={iconUrl} alt="Weather Icon" />);
     // setGreetingIcon still needs to be updated. Currently not showing up when it is supposed to
-    setGreetingIcon(<img src={iconUrl} alt="Weather Icon" />);
-    setGreeting(<span>Welcome to {city}</span>);
+    setGreetingIcon(null);
+    setGreeting(
+      <span>
+        <img src={iconUrl} alt="Weather Icon" /> Welcome to {city}
+      </span>
+    );
   }
 
   function getWeather(event) {
@@ -54,6 +80,7 @@ export default function Weather(props) {
           className="search-entry"
           type="search"
           placeholder="Enter a city"
+          autoComplete={false}
           onChange={updateCity}
         />
         <input className="search-button shadow" type="submit" value="Search" />
@@ -66,14 +93,16 @@ export default function Weather(props) {
 
       <div className="desired-city-info">
         <h1 className="welcome-to-city mt-3">{greeting}</h1>
-        <p className="current-date">Saturday - May 1, 2021 - 10:57</p>
+        <p className="current-date">
+          <DateAndTime />
+        </p>
       </div>
 
       <div className="row weather-info">
         <div className="main-temp col-sm-6">
-          <span className="high-and-low-temp">H: --°</span>
+          <span className="high-and-low-temp high-temp">H: {highTemp}°</span>
           <br />
-          <span className="current-temp">95°</span>
+          <span className="current-temp">{currentTemp}°</span>
           <span className="conversion-links">
             <a href="/" className="conversion-link-f">
               F
@@ -84,18 +113,26 @@ export default function Weather(props) {
             </a>
           </span>
           <br />
-          <span className="high-and-low-temp">L: --°</span>
+          <span className="high-and-low-temp low-temp">L: {lowTemp}°</span>
         </div>
 
         <div className="description-and-icon col-sm-6">
-          <p className="weather-description">Partly Cloudy</p>
-          <p className="weather-icon">🌤</p>
+          <p className="weather-description">{description}</p>
+          <p className="weather-icon">{icon}</p>
 
-          <ul className="weather-conditions mt-3">
-            <li>Feels like: --</li>
-            <li>Wind: --</li>
-            <li>Humidity: --</li>
-          </ul>
+          <div className="weather-conditions mt-3 mb-2">
+            <span>
+              <strong>Feels like:</strong> {feelsLike}°
+            </span>
+            <br />
+            <span>
+              <strong>Wind:</strong> {wind} mph
+            </span>
+            <br />
+            <span>
+              <strong>Humidity:</strong> {humidity}%
+            </span>
+          </div>
         </div>
       </div>
     </div>
