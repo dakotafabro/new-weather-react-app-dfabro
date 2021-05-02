@@ -69,8 +69,8 @@ export default function Weather() {
     let lowTemp = response.data.main.temp_min;
     let highTemp = response.data.main.temp_max;
     let temp = response.data.main.temp;
-    let icon = response.data.weather[0].icon;
-    let iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+    let currentIcon = response.data.weather[0].icon;
+    let iconUrl = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
 
     setCity(city);
     setHumidity(humidity);
