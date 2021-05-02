@@ -70,7 +70,7 @@ export default function Weather() {
     let highTemp = response.data.main.temp_max;
     let temp = response.data.main.temp;
     let iconCode = response.data.weather[0].icon;
-    let iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+    let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
     let currentIcon = <img src={iconUrl} alt="Weather Icon" />;
 
     setCity(city);
