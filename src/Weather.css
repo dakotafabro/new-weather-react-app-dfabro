@@ -95,11 +95,19 @@
   margin-bottom: 0;
 }
 
+.active-link {
+  color: var(--tertiary-color);
+}
+
 .Weather .weather-info .conversion-links {
   vertical-align: middle;
   position: relative;
   top: -40px;
   font-size: 25px;
+}
+
+.active-link {
+  color: var(--tertiary-color);
 }
 
 @media (max-width: 576px) {

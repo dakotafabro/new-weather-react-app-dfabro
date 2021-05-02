@@ -4,9 +4,8 @@ import axios from "axios";
 import ReactAnimatedWeather from "react-animated-weather";
 import DateAndTime from "./DateAndTime";
 
-// to do: add correct date and time to UI
-
-export default function Weather(props) {
+export default function Weather() {
+  let [speedUnit, setSpeedUnit] = useState("mph");
   let [icon, setIcon] = useState("--");
   let [humidity, setHumidity] = useState("--");
   let [wind, setWind] = useState("--");
@@ -33,6 +32,30 @@ export default function Weather(props) {
     </span>
   );
 
+  function convertToCelsius(event) {
+    event.preventDefault();
+    setSpeedUnit("km/h");
+
+    let units = "metric";
+    let apiKey = "714ee8260b39daee49f18fcc2cebda82";
+    let celsiusUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+    console.log(celsiusUrl);
+
+    axios.get(celsiusUrl).then(showWeather);
+  }
+
+  function convertToFahrenheit(event) {
+    event.preventDefault();
+    setSpeedUnit("mph");
+
+    let units = "imperial";
+    let apiKey = "714ee8260b39daee49f18fcc2cebda82";
+    let fahrenheitUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+    console.log(fahrenheitUrl);
+
+    axios.get(fahrenheitUrl).then(showWeather);
+  }
+
   function updateCity(event) {
     setCity(event.target.value);
   }
@@ -49,6 +72,7 @@ export default function Weather(props) {
     let icon = response.data.weather[0].icon;
     let iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
+    setCity(city);
     setHumidity(humidity);
     setWind(Math.round(wind));
     setFeelsLike(Math.round(feelsLike));
@@ -69,7 +93,7 @@ export default function Weather(props) {
   function getWeather(event) {
     event.preventDefault();
 
-    let units = `imperial`;
+    let units = "imperial";
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
     console.log(url);
@@ -91,7 +115,6 @@ export default function Weather(props) {
 
   function currentCityWeather(event) {
     event.preventDefault();
-
     navigator.geolocation.getCurrentPosition(showCurrentPosition);
   }
 
@@ -102,7 +125,7 @@ export default function Weather(props) {
           className="search-entry"
           type="search"
           placeholder="Enter a city"
-          autoComplete={false}
+          autoComplete="off"
           onChange={updateCity}
         />
         <input className="search-button shadow" type="submit" value="Search" />
@@ -127,11 +150,19 @@ export default function Weather(props) {
           <br />
           <span className="current-temp">{currentTemp}°</span>
           <span className="conversion-links">
-            <a href="/" className="conversion-link-f">
+            <a
+              href="/"
+              className="conversion-link-f"
+              onClick={convertToFahrenheit}
+            >
               F
             </a>{" "}
             |{" "}
-            <a href="/" className="conversion-link-c">
+            <a
+              href="/"
+              className="conversion-link-c"
+              onClick={convertToCelsius}
+            >
               C
             </a>
           </span>
@@ -149,7 +180,7 @@ export default function Weather(props) {
             </span>
             <br />
             <span>
-              <strong>Wind:</strong> {wind} mph
+              <strong>Wind:</strong> {wind} {speedUnit}
             </span>
             <br />
             <span>
