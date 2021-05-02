@@ -27,7 +27,10 @@ export default function Weather(props) {
     </span>
   );
   let [greeting, setGreeting] = useState(
-    <span>{greetingIcon}Welcome to...</span>
+    <span>
+      {greetingIcon} <br />
+      Welcome to...
+    </span>
   );
 
   function updateCity(event) {
@@ -35,6 +38,7 @@ export default function Weather(props) {
   }
 
   function showWeather(response) {
+    let city = response.data.name;
     let humidity = response.data.main.humidity;
     let wind = response.data.wind.speed;
     let feelsLike = response.data.main.feels_like;
@@ -53,11 +57,11 @@ export default function Weather(props) {
     setHighTemp(Math.round(highTemp));
     setCurrentTemp(Math.round(temp));
     setIcon(<img src={iconUrl} alt="Weather Icon" />);
-    // setGreetingIcon still needs to be updated. Currently not showing up when it is supposed to
     setGreetingIcon(null);
     setGreeting(
       <span>
-        <img src={iconUrl} alt="Weather Icon" /> Welcome to {city}
+        <img src={iconUrl} alt="Weather Icon" />
+        <br /> Welcome to {city}
       </span>
     );
   }
@@ -71,6 +75,24 @@ export default function Weather(props) {
     console.log(url);
 
     axios.get(url).then(showWeather);
+  }
+
+  function showCurrentPosition(currentPosition) {
+    let latitude = currentPosition.coords.latitude;
+    let longitude = currentPosition.coords.longitude;
+    let units = `imperial`;
+    let apiKey = "714ee8260b39daee49f18fcc2cebda82";
+    let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+
+    console.log(weatherApiUrl);
+
+    axios.get(weatherApiUrl).then(showWeather);
+  }
+
+  function currentCityWeather(event) {
+    event.preventDefault();
+
+    navigator.geolocation.getCurrentPosition(showCurrentPosition);
   }
 
   return (
@@ -88,6 +110,7 @@ export default function Weather(props) {
           className="current-button shadow"
           type="submit"
           value="Current"
+          onClick={currentCityWeather}
         />
       </form>
 
