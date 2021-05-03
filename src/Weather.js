@@ -3,18 +3,13 @@ import "./Weather.css";
 import axios from "axios";
 import ReactAnimatedWeather from "react-animated-weather";
 import DateAndTime from "./DateAndTime";
+import Forecast from "./Forecast";
 
 export default function Weather() {
+  let [weatherData, setWeatherData] = useState({});
   let [speedUnit, setSpeedUnit] = useState("mph");
-  let [icon, setIcon] = useState("--");
-  let [humidity, setHumidity] = useState("--");
-  let [wind, setWind] = useState("--");
-  let [feelsLike, setFeelsLike] = useState("--");
-  let [description, setDescription] = useState("--");
-  let [lowTemp, setLowTemp] = useState("--");
-  let [highTemp, setHighTemp] = useState("--");
-  let [currentTemp, setCurrentTemp] = useState("--");
   let [city, setCity] = useState(null);
+  let [currentIcon, setCurrentIcon] = useState(null);
   let [greetingIcon, setGreetingIcon] = useState(
     <span>
       <ReactAnimatedWeather
@@ -56,53 +51,33 @@ export default function Weather() {
     axios.get(fahrenheitUrl).then(showWeather);
   }
 
-  function updateCity(event) {
-    setCity(event.target.value);
-  }
-
-  // function displayForecast() {
-  //   let forecast
-  // }
-
-  // function getForecast(response) {
-  //   let apiKey = "714ee8260b39daee49f18fcc2cebda82";
-  //   let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}$units=${units}`;
-  //   console.log(forecastUrl);
-
-  //   axios.get(forecastUrl).then(displayForecast);
-  // }
-
   function showWeather(response) {
+    setWeatherData({
+      humidity: response.data.main.humidity,
+      wind: Math.round(response.data.wind.speed),
+      feelsLike: Math.round(response.data.main.feels_like),
+      description: response.data.weather[0].description.toUpperCase(),
+      lowTemp: Math.round(response.data.main.temp_min),
+      highTemp: Math.round(response.data.main.temp_max),
+      temp: Math.round(response.data.main.temp),
+    });
+
     let city = response.data.name;
-    let humidity = response.data.main.humidity;
-    let wind = response.data.wind.speed;
-    let feelsLike = response.data.main.feels_like;
-    let description = response.data.weather[0].description.toUpperCase();
-    let lowTemp = response.data.main.temp_min;
-    let highTemp = response.data.main.temp_max;
-    let temp = response.data.main.temp;
     let iconCode = response.data.weather[0].icon;
     let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-    let currentIcon = <img src={iconUrl} alt="Weather Icon" />;
+    setCurrentIcon(<img src={iconUrl} alt="Weather Icon" />);
 
-    setCity(city);
-    setHumidity(humidity);
-    setWind(Math.round(wind));
-    setFeelsLike(Math.round(feelsLike));
-    setDescription(description);
-    setLowTemp(Math.round(lowTemp));
-    setHighTemp(Math.round(highTemp));
-    setCurrentTemp(Math.round(temp));
-    setIcon(currentIcon);
     setGreetingIcon(null);
     setGreeting(
       <span>
-        {currentIcon}
+        <img src={iconUrl} alt="Weather Icon" />
         <br /> Welcome to {city}
       </span>
     );
+  }
 
-    // getForecast(response);
+  function updateCity(event) {
+    setCity(event.target.value);
   }
 
   function getWeather(event) {
@@ -161,9 +136,11 @@ export default function Weather() {
 
       <div className="row weather-info">
         <div className="main-temp col-sm-6">
-          <span className="high-and-low-temp high-temp">H: {highTemp}°</span>
+          <span className="high-and-low-temp high-temp">
+            H: {weatherData.highTemp}°
+          </span>
           <br />
-          <span className="current-temp">{currentTemp}°</span>
+          <span className="current-temp">{weatherData.temp}°</span>
           <span className="conversion-links">
             <a
               href="/"
@@ -182,75 +159,33 @@ export default function Weather() {
             </a>
           </span>
           <br />
-          <span className="high-and-low-temp low-temp">L: {lowTemp}°</span>
+          <span className="high-and-low-temp low-temp">
+            L: {weatherData.lowTemp}°
+          </span>
         </div>
 
         <div className="description-and-icon col-sm-6">
-          <p className="weather-description">{description}</p>
-          <p className="weather-icon">{icon}</p>
+          <p className="weather-description">{weatherData.description}</p>
+          <p className="weather-icon">{currentIcon}</p>
 
           <div className="weather-conditions mt-3 mb-2">
             <span>
-              <strong>Feels like:</strong> {feelsLike}°
+              <strong>Feels like:</strong> {weatherData.feelsLike}°
             </span>
             <br />
             <span>
-              <strong>Wind:</strong> {wind} {speedUnit}
+              <strong>Wind:</strong> {weatherData.wind} {speedUnit}
             </span>
             <br />
             <span>
-              <strong>Humidity:</strong> {humidity}%
+              <strong>Humidity:</strong> {weatherData.humidity}%
             </span>
           </div>
         </div>
       </div>
 
       <div>
-        <h2 className="mb-3">6-Day Forecast</h2>
-        <div className="row mb-3">
-          <div className="col-sm-2">Mon</div>
-          <div className="col-sm-2">Mon</div>
-          <div className="col-sm-2">Mon</div>
-          <div className="col-sm-2">Mon</div>
-          <div className="col-sm-2">Mon</div>
-          <div className="col-sm-2">Mon</div>
-        </div>
-
-        <div className="row mb-2">
-          <div className="col-sm-2">{icon}</div>
-          <div className="col-sm-2">{icon}</div>
-          <div className="col-sm-2">{icon}</div>
-          <div className="col-sm-2">{icon}</div>
-          <div className="col-sm-2">{icon}</div>
-          <div className="col-sm-2">{icon}</div>
-        </div>
-
-        <div className="row mb-5">
-          <div className="col-sm-2">
-            <span className="high-temp">High°</span> /{" "}
-            <span className="low-temp">Low°</span>
-          </div>
-          <div className="col-sm-2">
-            <span className="high-temp">High°</span> /{" "}
-            <span className="low-temp">Low°</span>
-          </div>
-          <div className="col-sm-2">
-            <span className="high-temp">High°</span> /{" "}
-            <span className="low-temp">Low°</span>
-          </div>
-          <div className="col-sm-2">
-            <span className="high-temp">High°</span> /{" "}
-            <span className="low-temp">Low°</span>
-          </div>
-          <div className="col-sm-2">
-            <span className="high-temp">High°</span> /{" "}
-            <span className="low-temp">Low°</span>
-          </div>
-          <div className="col-sm-2">
-            <span className="high-temp">High°</span> /{" "}
-            <span className="low-temp">Low°</span>
-          </div>
-        </div>
+        <Forecast />
       </div>
     </div>
   );
