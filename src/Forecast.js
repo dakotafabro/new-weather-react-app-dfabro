@@ -1,17 +1,17 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
 
 export default function Forecast(data) {
-  function displayForecast() {
-    alert("hello from forecast");
-  }
-  function getForecast() {
-    let units = "imperial";
-    let apiKey = "714ee8260b39daee49f18fcc2cebda82";
-    let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${data.city}&appid=${apiKey}$units=${units}`;
-    console.log(forecastUrl);
-    axios.get(forecastUrl).then(displayForecast);
-  }
+  //   function displayForecast() {
+  //     alert("hello from forecast");
+  //   }
+  //   function getForecast() {
+  //     let units = "imperial";
+  //     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
+  //     let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${data.city}&appid=${apiKey}$units=${units}`;
+  //     console.log(forecastUrl);
+  //     axios.get(forecastUrl).then(displayForecast);
+  //   }
 
   return (
     <div className="Forecast">
