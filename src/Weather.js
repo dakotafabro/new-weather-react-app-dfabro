@@ -6,6 +6,7 @@ import DateAndTime from "./DateAndTime";
 import Forecast from "./Forecast";
 
 export default function Weather() {
+  let [forecast, setForecast] = useState(null);
   let [weatherData, setWeatherData] = useState({});
   let [speedUnit, setSpeedUnit] = useState("mph");
   let [city, setCity] = useState(null);
@@ -23,7 +24,7 @@ export default function Weather() {
   let [greeting, setGreeting] = useState(
     <span>
       {greetingIcon} <br />
-      Welcome to...
+      Welcome
     </span>
   );
 
@@ -34,7 +35,6 @@ export default function Weather() {
     let units = "metric";
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let celsiusUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-    console.log(celsiusUrl);
 
     axios.get(celsiusUrl).then(showWeather);
   }
@@ -46,7 +46,6 @@ export default function Weather() {
     let units = "imperial";
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let fahrenheitUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-    console.log(fahrenheitUrl);
 
     axios.get(fahrenheitUrl).then(showWeather);
   }
@@ -75,7 +74,11 @@ export default function Weather() {
       </span>
     );
 
-    // getForecast();
+    setForecast(
+      <div>
+        <Forecast data={weatherData} />
+      </div>
+    );
   }
 
   function updateCity(event) {
@@ -88,7 +91,6 @@ export default function Weather() {
     let units = "imperial";
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-    console.log(url);
 
     axios.get(url).then(showWeather);
   }
@@ -99,8 +101,6 @@ export default function Weather() {
     let units = `imperial`;
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
-
-    console.log(weatherApiUrl);
 
     axios.get(weatherApiUrl).then(showWeather);
   }
@@ -186,9 +186,7 @@ export default function Weather() {
         </div>
       </div>
 
-      <div>
-        <Forecast data={weatherData} />
-      </div>
+      {forecast}
     </div>
   );
 }

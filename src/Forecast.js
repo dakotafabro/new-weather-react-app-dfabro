@@ -13,49 +13,62 @@ export default function Forecast(data) {
   //     axios.get(forecastUrl).then(displayForecast);
   //   }
 
+  //   let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
   return (
     <div className="Forecast">
       <h2 className="mb-3">6-Day Forecast</h2>
       <div className="row mb-3">
-        <div className="col-sm-2">Mon</div>
-        <div className="col-sm-2">Mon</div>
-        <div className="col-sm-2">Mon</div>
-        <div className="col-sm-2">Mon</div>
-        <div className="col-sm-2">Mon</div>
-        <div className="col-sm-2">Mon</div>
-      </div>
+        <div className="col-sm-2">
+          <strong>Mon</strong>
+          <br />
+          --
+          <br />
+          <span className="high-temp">High°</span> /{" "}
+          <span className="low-temp">Low°</span>
+        </div>
 
-      <div className="row mb-2">
-        <div className="col-sm-2">--</div>
-        <div className="col-sm-2">--</div>
-        <div className="col-sm-2">--</div>
-        <div className="col-sm-2">--</div>
-        <div className="col-sm-2">--</div>
-        <div className="col-sm-2">--</div>
-      </div>
+        <div className="col-sm-2">
+          <strong>Mon</strong>
+          <br />
+          --
+          <br />
+          <span className="high-temp">High°</span> /{" "}
+          <span className="low-temp">Low°</span>
+        </div>
 
-      <div className="row mb-5">
         <div className="col-sm-2">
+          <strong>Mon</strong>
+          <br />
+          --
+          <br />
           <span className="high-temp">High°</span> /{" "}
           <span className="low-temp">Low°</span>
         </div>
+
         <div className="col-sm-2">
+          <strong>Mon</strong>
+          <br />
+          --
+          <br />
           <span className="high-temp">High°</span> /{" "}
           <span className="low-temp">Low°</span>
         </div>
+
         <div className="col-sm-2">
+          <strong>Mon</strong>
+          <br />
+          --
+          <br />
           <span className="high-temp">High°</span> /{" "}
           <span className="low-temp">Low°</span>
         </div>
+
         <div className="col-sm-2">
-          <span className="high-temp">High°</span> /{" "}
-          <span className="low-temp">Low°</span>
-        </div>
-        <div className="col-sm-2">
-          <span className="high-temp">High°</span> /{" "}
-          <span className="low-temp">Low°</span>
-        </div>
-        <div className="col-sm-2">
+          <strong>Mon</strong>
+          <br />
+          --
+          <br />
           <span className="high-temp">High°</span> /{" "}
           <span className="low-temp">Low°</span>
         </div>
