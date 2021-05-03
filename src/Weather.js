@@ -74,6 +74,8 @@ export default function Weather() {
         <br /> Welcome to {city}
       </span>
     );
+
+    // getForecast();
   }
 
   function updateCity(event) {
@@ -185,7 +187,7 @@ export default function Weather() {
       </div>
 
       <div>
-        <Forecast />
+        <Forecast data={weatherData} />
       </div>
     </div>
   );
