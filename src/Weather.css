@@ -65,7 +65,15 @@
   color: var(--primary-color);
 }
 
+.Weather .high-temp {
+  color: var(--primary-color);
+}
+
 .Weather .main-temp .low-temp {
+  color: var(--secondary-color);
+}
+
+.Weather .low-temp {
   color: var(--secondary-color);
 }
 

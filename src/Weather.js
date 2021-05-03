@@ -60,6 +60,18 @@ export default function Weather() {
     setCity(event.target.value);
   }
 
+  // function displayForecast() {
+  //   let forecast
+  // }
+
+  // function getForecast(response) {
+  //   let apiKey = "714ee8260b39daee49f18fcc2cebda82";
+  //   let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}$units=${units}`;
+  //   console.log(forecastUrl);
+
+  //   axios.get(forecastUrl).then(displayForecast);
+  // }
+
   function showWeather(response) {
     let city = response.data.name;
     let humidity = response.data.main.humidity;
@@ -89,6 +101,8 @@ export default function Weather() {
         <br /> Welcome to {city}
       </span>
     );
+
+    // getForecast(response);
   }
 
   function getWeather(event) {
@@ -187,6 +201,54 @@ export default function Weather() {
             <span>
               <strong>Humidity:</strong> {humidity}%
             </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 className="mb-3">6-Day Forecast</h2>
+        <div className="row mb-3">
+          <div className="col-sm-2">Mon</div>
+          <div className="col-sm-2">Mon</div>
+          <div className="col-sm-2">Mon</div>
+          <div className="col-sm-2">Mon</div>
+          <div className="col-sm-2">Mon</div>
+          <div className="col-sm-2">Mon</div>
+        </div>
+
+        <div className="row mb-2">
+          <div className="col-sm-2">{icon}</div>
+          <div className="col-sm-2">{icon}</div>
+          <div className="col-sm-2">{icon}</div>
+          <div className="col-sm-2">{icon}</div>
+          <div className="col-sm-2">{icon}</div>
+          <div className="col-sm-2">{icon}</div>
+        </div>
+
+        <div className="row mb-5">
+          <div className="col-sm-2">
+            <span className="high-temp">High°</span> /{" "}
+            <span className="low-temp">Low°</span>
+          </div>
+          <div className="col-sm-2">
+            <span className="high-temp">High°</span> /{" "}
+            <span className="low-temp">Low°</span>
+          </div>
+          <div className="col-sm-2">
+            <span className="high-temp">High°</span> /{" "}
+            <span className="low-temp">Low°</span>
+          </div>
+          <div className="col-sm-2">
+            <span className="high-temp">High°</span> /{" "}
+            <span className="low-temp">Low°</span>
+          </div>
+          <div className="col-sm-2">
+            <span className="high-temp">High°</span> /{" "}
+            <span className="low-temp">Low°</span>
+          </div>
+          <div className="col-sm-2">
+            <span className="high-temp">High°</span> /{" "}
+            <span className="low-temp">Low°</span>
           </div>
         </div>
       </div>
