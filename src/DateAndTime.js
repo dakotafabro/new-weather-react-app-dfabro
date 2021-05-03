@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function DateAndTime() {
+export default function DateAndTime(props) {
   //   let shortDays = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
 
   let fullDays = [
