@@ -9,6 +9,7 @@ export default function Conversion(props) {
     console.log(response.data);
 
     setCurrentData({
+      ready: true,
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
       feelsLike: Math.round(response.data.main.feels_like),
@@ -42,116 +43,61 @@ export default function Conversion(props) {
     setCurrentData(props.data);
   }
 
-  //   if ((speedUnit = "mph")) {
   let iconUrl = `https://openweathermap.org/img/wn/${props.data.iconCode}@2x.png`;
 
-  return (
-    <div className="row weather-info">
-      <div className="main-temp col-sm-6">
-        <span className="high-and-low-temp high-temp">
-          H: {currentData.highTemp}°
-        </span>
-        <br />
-        <span className="current-temp">{currentData.temp}°</span>
-        <span className="conversion-links">
-          <a
-            href="/"
-            className="conversion-link-f"
-            onClick={convertToFahrenheit}
-          >
-            F
-          </a>{" "}
-          |{" "}
-          <a href="/" className="conversion-link-c" onClick={convertToCelsius}>
-            C
-          </a>
-        </span>
-        <br />
-        <span className="high-and-low-temp low-temp">
-          L: {currentData.lowTemp}°
-        </span>
-      </div>
-
-      <div className="description-and-icon col-sm-6">
-        <p className="weather-description">{currentData.description}</p>
-        <p className="weather-icon">
-          <img src={iconUrl} alt="Weather Icon" />
-        </p>
-
-        <div className="weather-conditions mt-3 mb-2">
-          <span>
-            <strong>Feels like:</strong> {currentData.feelsLike}°
+  if ((speedUnit = "mph")) {
+    return (
+      <div className="row weather-info">
+        <div className="main-temp col-sm-6">
+          <span className="high-and-low-temp high-temp">
+            H: {currentData.highTemp}°
           </span>
           <br />
-          <span>
-            <strong>Wind:</strong> {currentData.wind} {speedUnit}
+          <span className="current-temp">{currentData.temp}°</span>
+          <span className="conversion-links">
+            <a
+              href="/"
+              className="conversion-link-f"
+              onClick={convertToFahrenheit}
+            >
+              F
+            </a>{" "}
+            |{" "}
+            <a
+              href="/"
+              className="conversion-link-c"
+              onClick={convertToCelsius}
+            >
+              C
+            </a>
           </span>
           <br />
-          <span>
-            <strong>Humidity:</strong> {currentData.humidity}%
+          <span className="high-and-low-temp low-temp">
+            L: {currentData.lowTemp}°
           </span>
         </div>
+
+        <div className="description-and-icon col-sm-6">
+          <p className="weather-description">{currentData.description}</p>
+          <p className="weather-icon">
+            <img src={iconUrl} alt="Weather Icon" />
+          </p>
+
+          <div className="weather-conditions mt-3 mb-2">
+            <span>
+              <strong>Feels like:</strong> {currentData.feelsLike}°
+            </span>
+            <br />
+            <span>
+              <strong>Wind:</strong> {currentData.wind} {speedUnit}
+            </span>
+            <br />
+            <span>
+              <strong>Humidity:</strong> {currentData.humidity}%
+            </span>
+          </div>
+        </div>
       </div>
-    </div>
-  );
-  //   } else speedUnit = "km/h";
-  //   {
-  //     setCurrentIcon(
-  //       <img src={props.weatherDataPoints.iconUrl} alt="Weather Icon" />
-  //     );
-
-  //     return (
-  //       <div className="row weather-info">
-  //         <div className="main-temp col-sm-6">
-  //           <span className="high-and-low-temp high-temp">
-  //             H: {celsiusInfo.highTemp}°
-  //           </span>
-  //           <br />
-  //           <span className="current-temp">{celsiusInfo.temp}°</span>
-  //           <span className="conversion-links">
-  //             <a
-  //               href="/"
-  //               className="conversion-link-f"
-  //               onClick={convertToFahrenheit}
-  //             >
-  //               F
-  //             </a>{" "}
-  //             |{" "}
-  //             <a
-  //               href="/"
-  //               className="conversion-link-c"
-  //               onClick={convertToCelsius}
-  //             >
-  //               C
-  //             </a>
-  //           </span>
-  //           <br />
-  //           <span className="high-and-low-temp low-temp">
-  //             L: {celsiusInfo.lowTemp}°
-  //           </span>
-  //         </div>
-
-  //         <div className="description-and-icon col-sm-6">
-  //           <p className="weather-description">{props.data.description}</p>
-  //           <p className="weather-icon">
-  //             <img src={currentIcon} alt="Weather Icon" />
-  //           </p>
-
-  //           <div className="weather-conditions mt-3 mb-2">
-  //             <span>
-  //               <strong>Feels like:</strong> {celsiusInfo.feelsLike}°
-  //             </span>
-  //             <br />
-  //             <span>
-  //               <strong>Wind:</strong> {celsiusInfo.wind} {speedUnit}
-  //             </span>
-  //             <br />
-  //             <span>
-  //               <strong>Humidity:</strong> {props.data.humidity}%
-  //             </span>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     );
-  //   }
+    );
+  }
 }

@@ -7,7 +7,7 @@ export default function App() {
   return (
     <div className="container App border p-5 mt-2 mb-2 shadow">
       <div>
-        <Weather />
+        <Weather defaultCity="Los Angeles" />
       </div>
 
       <div>
