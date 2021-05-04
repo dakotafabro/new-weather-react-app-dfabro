@@ -118,6 +118,10 @@
   color: var(--tertiary-color);
 }
 
+.Weather .loader .loading-page {
+  font-size: 30px;
+}
+
 @media (max-width: 458px) {
   .Weather .desired-city-info .welcome-to-city {
     font-size: 45px;

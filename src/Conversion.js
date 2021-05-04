@@ -49,18 +49,18 @@ export default function Conversion(props) {
           H: {currentData.highTemp}°
         </span>
         <br />
-        <span className="current-temp">{currentData.temp}°</span>
+        <span className="current-temp">{currentData.temp}</span>
         <span className="conversion-links">
           <a
             href="/"
             className="conversion-link-f"
             onClick={convertToFahrenheit}
           >
-            F
+            F°
           </a>{" "}
           |{" "}
           <a href="/" className="conversion-link-c" onClick={convertToCelsius}>
-            C
+            C°
           </a>
         </span>
         <br />

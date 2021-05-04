@@ -136,8 +136,8 @@ export default function Weather(props) {
     search();
 
     return (
-      <div>
-        <div>Loading...</div>
+      <div className="loader">
+        <div className="loading-page">Loading...</div>
         <div>
           <Loader type="Rings" color="#4646f8" height={160} width={160} />
         </div>
