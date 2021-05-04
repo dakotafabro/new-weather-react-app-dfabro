@@ -43,7 +43,7 @@ export default function Weather(props) {
       iconCode: response.data.weather[0].icon,
     });
 
-    // let city = response.data.name;
+    let city = response.data.name;
     let iconCode = response.data.weather[0].icon;
     let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
@@ -68,6 +68,9 @@ export default function Weather(props) {
 
   function getWeather(event) {
     event.preventDefault();
+
+    setWeatherData({});
+
     let units = "imperial";
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
@@ -85,19 +88,18 @@ export default function Weather(props) {
 
     axios.get(weatherApiUrl).then(showWeather);
 
-    // function search() {
-    //   navigator.geolocation.getCurrentPosition(loadWeatherData);
+    navigator.geolocation.getCurrentPosition(loadWeatherData);
 
-    //   function loadWeatherData(props) {
-    //     let latitude = response.coords.latitude;
-    //     let longitude = response.coords.longitude;
-    //     let units = `imperial`;
-    //     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
-    //     let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
-    //     console.log(weatherApiUrl);
+    function loadWeatherData(response) {
+      let latitude = response.coords.latitude;
+      let longitude = response.coords.longitude;
+      let units = `imperial`;
+      let apiKey = "714ee8260b39daee49f18fcc2cebda82";
+      let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+      console.log(weatherApiUrl);
 
-    //     axios.get(weatherApiUrl).then(showWeather);
-    //   }
+      axios.get(weatherApiUrl).then(showWeather);
+    }
   }
 
   if (weatherData.ready) {
