@@ -5,6 +5,8 @@ import ReactAnimatedWeather from "react-animated-weather";
 import DateAndTime from "./DateAndTime";
 import Forecast from "./Forecast";
 import Conversion from "./Conversion";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 export default function Weather(props) {
   let [forecast, setForecast] = useState(null);
@@ -75,8 +77,6 @@ export default function Weather(props) {
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
-    console.log(url);
-
     axios.get(url).then(showWeather);
   }
 
@@ -84,7 +84,6 @@ export default function Weather(props) {
     let units = `imperial`;
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-    console.log(weatherApiUrl);
 
     axios.get(weatherApiUrl).then(showWeather);
 
@@ -96,7 +95,6 @@ export default function Weather(props) {
       let units = `imperial`;
       let apiKey = "714ee8260b39daee49f18fcc2cebda82";
       let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
-      console.log(weatherApiUrl);
 
       axios.get(weatherApiUrl).then(showWeather);
     }
@@ -137,6 +135,13 @@ export default function Weather(props) {
   } else {
     search();
 
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <div>Loading...</div>
+        <div>
+          <Loader type="Rings" color="#4646f8" height={160} width={160} />
+        </div>
+      </div>
+    );
   }
 }
