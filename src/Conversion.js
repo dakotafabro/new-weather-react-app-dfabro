@@ -4,22 +4,7 @@ import axios from "axios";
 export default function Conversion(props) {
   let [speedUnit, setSpeedUnit] = useState("mph");
   let [currentData, setCurrentData] = useState(props.data);
-
-  function getCelsius(response) {
-    setCurrentData({
-      ready: true,
-      humidity: response.data.main.humidity,
-      wind: Math.round(response.data.wind.speed),
-      feelsLike: Math.round(response.data.main.feels_like),
-      description: response.data.weather[0].description.toUpperCase(),
-      lowTemp: Math.round(response.data.main.temp_min),
-      highTemp: Math.round(response.data.main.temp_max),
-      temp: Math.round(response.data.main.temp),
-      lat: response.data.coord.lat,
-      lon: response.data.coord.lon,
-      city: response.data.name,
-    });
-  }
+  let iconUrl = `https://openweathermap.org/img/wn/${props.data.iconCode}@2x.png`;
 
   function convertToCelsius(event) {
     setSpeedUnit("km/h");
@@ -30,7 +15,18 @@ export default function Conversion(props) {
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let celsiusUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.data.city}&appid=${apiKey}&units=${units}`;
 
-    axios.get(celsiusUrl).then(getCelsius);
+    axios.get(celsiusUrl).then(convertToMetric);
+  }
+
+  function convertToMetric(response) {
+    setCurrentData({
+      description: response.data.weather[0].description.toUpperCase(),
+      wind: Math.round(response.data.wind.speed),
+      feelsLike: Math.round((response.data.main.feels_like * 9) / 5 + 32),
+      lowTemp: Math.round((response.data.main.temp_min * 9) / 5 + 32),
+      highTemp: Math.round((response.data.main.temp_max * 9) / 5 + 32),
+      temp: Math.round((response.data.main.temp * 9) / 5 + 32),
+    });
   }
 
   function convertToFahrenheit(event) {
@@ -39,8 +35,6 @@ export default function Conversion(props) {
 
     setCurrentData(props.data);
   }
-
-  let iconUrl = `https://openweathermap.org/img/wn/${props.data.iconCode}@2x.png`;
 
   return (
     <div className="row weather-info">

@@ -1,11 +1,11 @@
 import React from "react";
-// import axios from "axios";
+import axios from "axios";
 
 export default function Forecast(props) {
-  // function displayForecast(response) {
-  //   console.log(response.data.lat);
-  //   console.log(response.data.lon);
-  // }
+  function displayForecast(response) {
+    console.log(response.data.lat);
+    console.log(response.data.lon);
+  }
 
   let lat = props.data.lat;
   let lon = props.data.lon;
@@ -13,7 +13,7 @@ export default function Forecast(props) {
   let apiKey = "714ee8260b39daee49f18fcc2cebda82";
   let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
   console.log(forecastUrl);
-  // axios.get(forecastUrl).then(displayForecast);
+  axios.get(forecastUrl).then(displayForecast);
 
   //   let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 

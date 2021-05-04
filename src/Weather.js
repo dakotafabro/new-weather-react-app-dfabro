@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
-import ReactAnimatedWeather from "react-animated-weather";
 import DateAndTime from "./DateAndTime";
 import Forecast from "./Forecast";
 import Conversion from "./Conversion";
@@ -9,27 +8,15 @@ import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 export default function Weather(props) {
-  let [forecast, setForecast] = useState(null);
   let [weatherData, setWeatherData] = useState({});
-  const [city, setCity] = useState(props.defaultCity);
-  let [greetingIcon, setGreetingIcon] = useState(
-    <span>
-      <ReactAnimatedWeather
-        icon="CLEAR_DAY"
-        color="#d18c24"
-        size={75}
-        animate={true}
-      />{" "}
-    </span>
-  );
-  let [greeting, setGreeting] = useState(
-    <span>
-      {greetingIcon} <br />
-      Welcome
-    </span>
-  );
+  const [city, setCity] = useState(null);
+  let [greeting, setGreeting] = useState(<span>Welcome</span>);
 
   function showWeather(response) {
+    let city = response.data.name;
+    let iconCode = response.data.weather[0].icon;
+    let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
     setWeatherData({
       ready: true,
       humidity: response.data.main.humidity,
@@ -45,22 +32,11 @@ export default function Weather(props) {
       iconCode: response.data.weather[0].icon,
     });
 
-    let city = response.data.name;
-    let iconCode = response.data.weather[0].icon;
-    let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-
-    setGreetingIcon(null);
     setGreeting(
       <span>
         <img src={iconUrl} alt="Weather Icon" />
         <br /> Welcome to {city}
       </span>
-    );
-
-    setForecast(
-      <div>
-        <Forecast data={weatherData} />
-      </div>
     );
   }
 
@@ -71,11 +47,12 @@ export default function Weather(props) {
   function getWeather(event) {
     event.preventDefault();
 
-    setWeatherData({ ready: true });
-
     let units = "imperial";
-    let apiKey = "714ee8260b39daee49f18fcc2cebda82";
+    const apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+
+    setWeatherData({});
+    // setWeatherData({ ready: true });
 
     axios.get(url).then(showWeather);
   }
@@ -84,8 +61,9 @@ export default function Weather(props) {
     let latitude = response.coords.latitude;
     let longitude = response.coords.longitude;
     let units = `imperial`;
-    let apiKey = "714ee8260b39daee49f18fcc2cebda82";
+    const apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+    console.log(weatherApiUrl);
 
     axios.get(weatherApiUrl).then(showWeather);
   }
@@ -123,7 +101,9 @@ export default function Weather(props) {
           <Conversion data={weatherData} />
         </div>
 
-        {forecast}
+        <div>
+          <Forecast data={weatherData} />
+        </div>
       </div>
     );
   } else {
