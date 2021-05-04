@@ -71,11 +71,11 @@ export default function Weather(props) {
   function getWeather(event) {
     event.preventDefault();
 
-    setWeatherData({});
-
     let units = "imperial";
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+
+    setWeatherData({});
 
     axios.get(url).then(showWeather);
   }
