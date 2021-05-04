@@ -71,33 +71,27 @@ export default function Weather(props) {
   function getWeather(event) {
     event.preventDefault();
 
+    setWeatherData({ ready: true });
+
     let units = "imperial";
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
-    setWeatherData({});
-
     axios.get(url).then(showWeather);
   }
 
-  function search() {
+  function loadWeatherData(response) {
+    let latitude = response.coords.latitude;
+    let longitude = response.coords.longitude;
     let units = `imperial`;
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
-    let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+    let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
 
     axios.get(weatherApiUrl).then(showWeather);
+  }
 
+  function search() {
     navigator.geolocation.getCurrentPosition(loadWeatherData);
-
-    function loadWeatherData(response) {
-      let latitude = response.coords.latitude;
-      let longitude = response.coords.longitude;
-      let units = `imperial`;
-      let apiKey = "714ee8260b39daee49f18fcc2cebda82";
-      let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
-
-      axios.get(weatherApiUrl).then(showWeather);
-    }
   }
 
   if (weatherData.ready) {
@@ -120,9 +114,9 @@ export default function Weather(props) {
 
         <div className="desired-city-info">
           <h1 className="welcome-to-city mt-1">{greeting}</h1>
-          <p className="current-date">
+          <div className="current-date">
             <DateAndTime />
-          </p>
+          </div>
         </div>
 
         <div>
