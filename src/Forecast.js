@@ -5,6 +5,7 @@ import "./Forecast.css";
 export default function Forecast(props) {
   let [ready, setReady] = useState(false);
   let [forecast, setForecast] = useState(null);
+  // let iconUrl = `https://openweathermap.org/img/wn/${props.data.iconCode}@2x.png`;
 
   function displayForecast(response) {
     setForecast(response.data.daily);
@@ -27,19 +28,25 @@ export default function Forecast(props) {
         <h2 className="mb-3">6-Day Forecast</h2>
         <div className="row mb-5">
           <div className="col-sm">
-            <strong>Mon</strong>
-            <br />
-            <span className="main-forecast-temp">
-              {Math.round(forecast[0].temp.day)}°
-            </span>
-            <br />
-            <span className="high-temp">
-              {Math.round(forecast[0].temp.max)}°
-            </span>{" "}
-            /{" "}
-            <span className="low-temp">
-              {Math.round(forecast[0].temp.min)}°
-            </span>
+            <div>
+              <strong>{forecast[0].dt}</strong>
+              <br />
+              <span className="main-forecast-temp">
+                {Math.round(forecast[0].temp.day)}°
+              </span>
+              <br />
+              {/* <span className="icon">
+              <img src={iconUrl} alt="icon" />
+            </span> */}
+              <br />
+              <span className="high-temp">
+                {Math.round(forecast[0].temp.max)}°
+              </span>{" "}
+              /{" "}
+              <span className="low-temp">
+                {Math.round(forecast[0].temp.min)}°
+              </span>
+            </div>
           </div>
         </div>
       </div>
