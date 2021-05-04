@@ -118,7 +118,7 @@
   color: var(--tertiary-color);
 }
 
-.Weather .loader .loading-page {
+.loader .loading-page {
   font-size: 30px;
 }
 
