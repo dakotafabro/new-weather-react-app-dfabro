@@ -1,35 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import "./Forecast.css";
 
 export default function Forecast(props) {
+  let [ready, setReady] = useState(false);
+  let [forecast, setForecast] = useState(null);
+
   function displayForecast(response) {
-    console.log(response.data.lat);
-    console.log(response.data.lon);
+    setForecast(response.data.daily);
+    setReady(true);
   }
 
-  let lat = props.data.lat;
-  let lon = props.data.lon;
-  let units = "imperial";
-  let apiKey = "714ee8260b39daee49f18fcc2cebda82";
-  let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-  console.log(forecastUrl);
-  axios.get(forecastUrl).then(displayForecast);
+  function load() {
+    let lat = props.lat;
+    let lon = props.lon;
+    let units = "imperial";
+    let apiKey = "714ee8260b39daee49f18fcc2cebda82";
+    let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+    axios.get(forecastUrl).then(displayForecast);
+  }
 
-  //   let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-  return (
-    <div className="Forecast">
-      <h2 className="mb-3">6-Day Forecast</h2>
-      <div className="row mb-5">
-        <div className="col-sm">
-          <strong>Mon</strong>
-          <br />
-          --
-          <br />
-          <span className="high-temp">High°</span> /{" "}
-          <span className="low-temp">Low°</span>
+  //   let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  if (ready === true) {
+    return (
+      <div className="Forecast">
+        <h2 className="mb-3">6-Day Forecast</h2>
+        <div className="row mb-5">
+          <div className="col-sm">
+            <strong>Mon</strong>
+            <br />
+            <span className="main-forecast-temp">
+              {Math.round(forecast[0].temp.day)}°
+            </span>
+            <br />
+            <span className="high-temp">
+              {Math.round(forecast[0].temp.max)}°
+            </span>{" "}
+            /{" "}
+            <span className="low-temp">
+              {Math.round(forecast[0].temp.min)}°
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    load();
+
+    return null;
+  }
 }

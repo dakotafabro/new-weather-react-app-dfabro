@@ -8,15 +8,10 @@ import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 export default function Weather(props) {
-  let [weatherData, setWeatherData] = useState({});
-  const [city, setCity] = useState(null);
-  let [greeting, setGreeting] = useState(<span>Welcome</span>);
+  let [weatherData, setWeatherData] = useState({ ready: false });
+  let [city, setCity] = useState(props.defaultCity);
 
   function showWeather(response) {
-    let city = response.data.name;
-    let iconCode = response.data.weather[0].icon;
-    let iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-
     setWeatherData({
       ready: true,
       humidity: response.data.main.humidity,
@@ -31,13 +26,6 @@ export default function Weather(props) {
       city: response.data.name,
       iconCode: response.data.weather[0].icon,
     });
-
-    setGreeting(
-      <span>
-        <img src={iconUrl} alt="Weather Icon" />
-        <br /> Welcome to {city}
-      </span>
-    );
   }
 
   function updateCity(event) {
@@ -47,32 +35,24 @@ export default function Weather(props) {
   function getWeather(event) {
     event.preventDefault();
 
+    setWeatherData({ ready: false });
+
     let units = "imperial";
     const apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
-    setWeatherData({});
-    // setWeatherData({ ready: true });
+    axios.get(url).then(showWeather);
+  }
+
+  function search() {
+    let units = "imperial";
+    const apiKey = "714ee8260b39daee49f18fcc2cebda82";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
     axios.get(url).then(showWeather);
   }
 
-  function loadWeatherData(response) {
-    let latitude = response.coords.latitude;
-    let longitude = response.coords.longitude;
-    let units = `imperial`;
-    const apiKey = "714ee8260b39daee49f18fcc2cebda82";
-    let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
-    console.log(weatherApiUrl);
-
-    axios.get(weatherApiUrl).then(showWeather);
-  }
-
-  function search() {
-    navigator.geolocation.getCurrentPosition(loadWeatherData);
-  }
-
-  if (weatherData.ready) {
+  if (weatherData.ready === true) {
     return (
       <div className="Weather">
         <form className="search-for-city mb-2" onSubmit={getWeather}>
@@ -91,7 +71,11 @@ export default function Weather(props) {
         </form>
 
         <div className="desired-city-info">
-          <h1 className="welcome-to-city mt-1">{greeting}</h1>
+          <h1 className="welcome-to-city mt-1">
+            <span>
+              <br /> Welcome to <br /> {weatherData.city}
+            </span>
+          </h1>
           <div className="current-date">
             <DateAndTime />
           </div>
@@ -102,7 +86,7 @@ export default function Weather(props) {
         </div>
 
         <div>
-          <Forecast data={weatherData} />
+          <Forecast lat={weatherData.lat} lon={weatherData.lon} />
         </div>
       </div>
     );

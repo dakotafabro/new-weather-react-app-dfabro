@@ -12,7 +12,7 @@ export default function Conversion(props) {
     event.preventDefault();
 
     let units = "metric";
-    let apiKey = "714ee8260b39daee49f18fcc2cebda82";
+    const apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let celsiusUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.data.city}&appid=${apiKey}&units=${units}`;
 
     axios.get(celsiusUrl).then(convertToMetric);
@@ -22,10 +22,11 @@ export default function Conversion(props) {
     setCurrentData({
       description: response.data.weather[0].description.toUpperCase(),
       wind: Math.round(response.data.wind.speed),
-      feelsLike: Math.round((response.data.main.feels_like * 9) / 5 + 32),
-      lowTemp: Math.round((response.data.main.temp_min * 9) / 5 + 32),
-      highTemp: Math.round((response.data.main.temp_max * 9) / 5 + 32),
-      temp: Math.round((response.data.main.temp * 9) / 5 + 32),
+      feelsLike: Math.round(response.data.main.feels_like),
+      lowTemp: Math.round(response.data.main.temp_min),
+      highTemp: Math.round(response.data.main.temp_max),
+      temp: Math.round(response.data.main.temp),
+      humidity: response.data.main.humidity,
     });
   }
 
