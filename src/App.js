@@ -36,7 +36,7 @@ export default function App() {
           <Weather defaultCity={defaultCity} />
         </div>
 
-        <div className="mt-0">
+        <div className="mb-3 mt-3">
           <Footer />
         </div>
       </div>
