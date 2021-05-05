@@ -31,12 +31,12 @@ export default function App() {
 
   if (ready === true) {
     return (
-      <div className="container App border p-5 mt-2 mb-2 shadow">
+      <div className="container App border p-2 mt-2 mb-2 shadow">
         <div>
           <Weather defaultCity={defaultCity} />
         </div>
 
-        <div>
+        <div className="mt-0">
           <Footer />
         </div>
       </div>

@@ -27,24 +27,24 @@ export default function Forecast(props) {
     console.log(forecast);
     return (
       <div className="Forecast">
-        <h2 className="mb-3">6-Day Forecast</h2>
-        <div className="row mb-5">
-          <div className="col-sm mb-4">
+        <h2 className="mb-2">6-Day Forecast</h2>
+        <div className="row mb-1">
+          <div className="col-sm mb-3">
             <WeatherForecastDay data={forecast[0]} />
           </div>
-          <div className="col-sm mb-4">
+          <div className="col-sm mb-3">
             <WeatherForecastDay data={forecast[1]} />
           </div>
-          <div className="col-sm mb-4">
+          <div className="col-sm mb-3">
             <WeatherForecastDay data={forecast[2]} />
           </div>
-          <div className="col-sm mb-4">
+          <div className="col-sm mb-3">
             <WeatherForecastDay data={forecast[3]} />
           </div>
-          <div className="col-sm mb-4">
+          <div className="col-sm mb-3">
             <WeatherForecastDay data={forecast[4]} />
           </div>
-          <div className="col-sm mb-4">
+          <div className="col-sm mb-3">
             <WeatherForecastDay data={forecast[5]} />
           </div>
         </div>

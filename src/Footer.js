@@ -3,7 +3,7 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <span className="Footer">
+    <span className="Footer mb-1">
       <a
         href="https://github.com/dakotafabro/new-weather-react-app-dfabro"
         title="GitHub Repo for this project"

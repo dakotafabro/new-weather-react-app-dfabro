@@ -64,36 +64,29 @@ export default function Weather(props) {
             autoComplete="off"
             onChange={updateCity}
           />
-          <input
-            className="search-button shadow"
-            type="submit"
-            value="Search"
-          />
+          <input className="search-button" type="submit" value="Search" />
         </form>
 
         <div className="desired-city-info">
           <h1 className="welcome-to-city mt-3">
             <span>
+              Welcome to <br /> {weatherData.city}
+              <br />
               <WeatherIcon
                 code={weatherData.iconCode}
-                size={52}
+                size={70}
                 color="#d18c24"
               />
-              <br /> Welcome to <br /> {weatherData.city}
             </span>
           </h1>
-          <div className="current-date">
+          <div className="current-date mt-0">
             <DateAndTime />
           </div>
         </div>
 
-        <div>
-          <Conversion data={weatherData} />
-        </div>
+        <Conversion data={weatherData} />
 
-        <div>
-          <Forecast lat={weatherData.lat} lon={weatherData.lon} />
-        </div>
+        <Forecast lat={weatherData.lat} lon={weatherData.lon} />
       </div>
     );
   } else {

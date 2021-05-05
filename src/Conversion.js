@@ -51,6 +51,7 @@ export default function Conversion(props) {
             className="conversion-link-f"
             onClick={convertToFahrenheit}
           >
+            {" "}
             F°
           </a>{" "}
           |{" "}
@@ -67,7 +68,7 @@ export default function Conversion(props) {
       <div className="description-and-icon col-sm-6">
         <p className="weather-description">{currentData.description}</p>
         <p className="weather-icon">
-          <WeatherIcon code={props.data.iconCode} size={52} color="#d18c24" />
+          <WeatherIcon code={props.data.iconCode} size={65} color="#d18c24" />
         </p>
 
         <div className="weather-conditions mt-3 mb-2">

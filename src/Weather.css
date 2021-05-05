@@ -54,7 +54,7 @@
 }
 
 .Weather .weather-info .main-temp {
-  padding: 50px;
+  padding: 30px;
 }
 
 .Weather .main-temp .high-and-low-temp {
@@ -78,11 +78,11 @@
 }
 
 .Weather .main-temp .current-temp {
-  font-size: 75px;
+  font-size: 85px;
 }
 
 .Weather .desired-city-info .welcome-to-city {
-  font-size: 50px;
+  font-size: 35px;
 }
 
 .Weather .desired-city-info .current-date {
@@ -91,7 +91,7 @@
 
 .Weather .description-and-icon {
   vertical-align: middle;
-  padding: 50px;
+  padding: 20px;
 }
 
 .Weather .description-and-icon .weather-description {
