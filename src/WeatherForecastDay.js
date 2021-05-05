@@ -3,20 +3,26 @@ import "./WeatherForecastDay.css";
 import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherForecastDay(props) {
-  //   let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   function day() {
     let date = new Date(props.data.dt * 1000);
     let day = date.getDay();
 
-    return day;
+    return shortDays[day];
   }
 
   return (
     <div>
-      <strong>{day}</strong>
+      <span className="WeatherForecastDay mb-2">
+        <strong>{day()}</strong>
+      </span>
       <br />
-      <WeatherIcon code={props.data.icon} size={52} color="#d18c24" />
+      <WeatherIcon
+        code={props.data.weather[0].icon}
+        size={52}
+        color="#d18c24"
+      />
       <br />
       <span className="high-temp">
         {Math.round(props.data.temp.max)}°
