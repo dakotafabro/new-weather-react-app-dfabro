@@ -6,6 +6,7 @@ import Forecast from "./Forecast";
 import Conversion from "./Conversion";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import WeatherIcon from "./WeatherIcon";
 
 export default function Weather(props) {
   let [weatherData, setWeatherData] = useState({ ready: false });
@@ -71,8 +72,13 @@ export default function Weather(props) {
         </form>
 
         <div className="desired-city-info">
-          <h1 className="welcome-to-city mt-1">
+          <h1 className="welcome-to-city mt-3">
             <span>
+              <WeatherIcon
+                code={weatherData.iconCode}
+                size={52}
+                color="#d18c24"
+              />
               <br /> Welcome to <br /> {weatherData.city}
             </span>
           </h1>

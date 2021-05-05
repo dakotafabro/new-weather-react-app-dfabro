@@ -1,18 +1,20 @@
 import React from "react";
 import "./WeatherForecastDay.css";
+import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherForecastDay(props) {
+  function day() {
+    let date = new Date(props.data.dt * 1000);
+    let day = date.getDay();
+
+    return day;
+  }
+
   return (
     <div>
-      <strong>{props.data.dt}</strong>
+      <strong>{day}</strong>
       <br />
-      <span className="main-forecast-temp">
-        {Math.round(props.data.temp.day)}°
-      </span>
-      <br />
-      {/* <span className="icon">
-              <img src={iconUrl} alt="icon" />
-            </span> */}
+      <WeatherIcon code={props.data.icon} size={52} color="#d18c24" />
       <br />
       <span className="high-temp">
         {Math.round(props.data.temp.max)}°

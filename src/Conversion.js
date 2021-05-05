@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import WeatherIcon from "./WeatherIcon";
 
 export default function Conversion(props) {
   let [speedUnit, setSpeedUnit] = useState("mph");
   let [currentData, setCurrentData] = useState(props.data);
-  let iconUrl = `https://openweathermap.org/img/wn/${props.data.iconCode}@2x.png`;
+  // let iconUrl = `https://openweathermap.org/img/wn/${props.data.iconCode}@2x.png`;
 
   function convertToCelsius(event) {
     setSpeedUnit("km/h");
@@ -67,7 +68,7 @@ export default function Conversion(props) {
       <div className="description-and-icon col-sm-6">
         <p className="weather-description">{currentData.description}</p>
         <p className="weather-icon">
-          <img src={iconUrl} alt="Weather Icon" />
+          <WeatherIcon code={props.data.iconCode} size={52} color="#d18c24" />
         </p>
 
         <div className="weather-conditions mt-3 mb-2">
