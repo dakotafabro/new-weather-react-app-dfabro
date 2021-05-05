@@ -5,7 +5,6 @@ import WeatherIcon from "./WeatherIcon";
 export default function Conversion(props) {
   let [speedUnit, setSpeedUnit] = useState("mph");
   let [currentData, setCurrentData] = useState(props.data);
-  // let iconUrl = `https://openweathermap.org/img/wn/${props.data.iconCode}@2x.png`;
 
   function convertToCelsius(event) {
     setSpeedUnit("km/h");

@@ -3,6 +3,8 @@ import "./WeatherForecastDay.css";
 import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherForecastDay(props) {
+  //   let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+
   function day() {
     let date = new Date(props.data.dt * 1000);
     let day = date.getDay();

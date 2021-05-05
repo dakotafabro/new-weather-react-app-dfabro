@@ -7,7 +7,6 @@ import WeatherIcon from "./WeatherIcon";
 export default function Forecast(props) {
   let [ready, setReady] = useState(false);
   let [forecast, setForecast] = useState(null);
-  // let iconUrl = `https://openweathermap.org/img/wn/${props.data.iconCode}@2x.png`;
 
   function displayForecast(response) {
     setForecast(response.data.daily);
@@ -23,14 +22,15 @@ export default function Forecast(props) {
     axios.get(forecastUrl).then(displayForecast);
   }
 
-  //   let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
   if (ready === true) {
     return (
       <div className="Forecast">
         <h2 className="mb-3">6-Day Forecast</h2>
         <div className="row mb-5">
           <div className="col-sm">
-            <strong>{forecast[0].dt}</strong>
+            <span className="mb-5">
+              <strong>{forecast[0].dt}</strong>
+            </span>
             <br />
             <WeatherIcon
               code={forecast[0].weather[0].icon}
