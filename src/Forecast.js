@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Forecast.css";
 import WeatherForecastDay from "./WeatherForecastDay";
-// import WeatherIcon from "./WeatherIcon";
 
 export default function Forecast(props) {
   let [ready, setReady] = useState(false);
   let [forecast, setForecast] = useState(null);
 
   function displayForecast(response) {
-    console.log(response.data);
     setForecast(response.data.daily);
     setReady(true);
   }
@@ -24,7 +22,6 @@ export default function Forecast(props) {
   }
 
   if (ready === true) {
-    console.log(forecast);
     return (
       <div className="Forecast">
         <div className="row mb-3">

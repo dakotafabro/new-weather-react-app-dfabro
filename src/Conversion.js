@@ -1,40 +1,43 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import WeatherIcon from "./WeatherIcon";
 
 export default function Conversion(props) {
   let [speedUnit, setSpeedUnit] = useState("mph");
-  let [currentData, setCurrentData] = useState(props.data);
+  // let [currentData, setCurrentData] = useState(props.data);
+  let currentData = props.data;
 
   function convertToCelsius(event) {
-    setSpeedUnit("km/h");
+    // setSpeedUnit("km/h");
 
     event.preventDefault();
+    alert("Conversion under construction 👷🏽🛠💻");
 
-    let units = "metric";
-    const apiKey = "714ee8260b39daee49f18fcc2cebda82";
-    let celsiusUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.data.city}&appid=${apiKey}&units=${units}`;
+    // let units = "metric";
+    // const apiKey = "714ee8260b39daee49f18fcc2cebda82";
+    // let celsiusUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.data.city}&appid=${apiKey}&units=${units}`;
 
-    axios.get(celsiusUrl).then(convertToMetric);
+    // axios.get(celsiusUrl).then(convertToMetric);
   }
 
-  function convertToMetric(response) {
-    setCurrentData({
-      description: response.data.weather[0].description.toUpperCase(),
-      wind: Math.round(response.data.wind.speed),
-      feelsLike: Math.round(response.data.main.feels_like),
-      lowTemp: Math.round(response.data.main.temp_min),
-      highTemp: Math.round(response.data.main.temp_max),
-      temp: Math.round(response.data.main.temp),
-      humidity: response.data.main.humidity,
-    });
-  }
+  // function convertToMetric(response) {
+  //   setCurrentData({
+  //     description: response.data.weather[0].description.toUpperCase(),
+  //     wind: Math.round(response.data.wind.speed),
+  //     feelsLike: Math.round(response.data.main.feels_like),
+  //     lowTemp: Math.round(response.data.main.temp_min),
+  //     highTemp: Math.round(response.data.main.temp_max),
+  //     temp: Math.round(response.data.main.temp),
+  //     humidity: response.data.main.humidity,
+  //   });
+  // }
 
   function convertToFahrenheit(event) {
     event.preventDefault();
+    alert("Conversion under construction 👷🏽🛠💻");
     setSpeedUnit("mph");
 
-    setCurrentData(props.data);
+    // setCurrentData(props.data);
   }
 
   return (
@@ -51,7 +54,6 @@ export default function Conversion(props) {
             className="conversion-link-f"
             onClick={convertToFahrenheit}
           >
-            {" "}
             F°
           </a>{" "}
           |{" "}
