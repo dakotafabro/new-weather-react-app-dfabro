@@ -6,11 +6,13 @@ import Forecast from "./Forecast";
 export default function Conversion(props) {
   let [speedUnit, setSpeedUnit] = useState("mph");
   let [currentData, setCurrentData] = useState(props.data);
-  let [clicked, setClicked] = useState(false);
+  let [celsiusClicked, setCelsiusClicked] = useState(false);
+  let [fahrenheitClicked, setFahrenheitClicked] = useState(false);
   // let currentData = props.data;
 
   function convertToCelsius(event) {
-    setClicked(true);
+    setCelsiusClicked(true);
+    setFahrenheitClicked(false);
     setSpeedUnit("km/h");
 
     event.preventDefault();
@@ -40,7 +42,8 @@ export default function Conversion(props) {
     event.preventDefault();
 
     setSpeedUnit("mph");
-    setClicked(false);
+    setCelsiusClicked(false);
+    setFahrenheitClicked(true);
 
     setCurrentData(props.data);
     alert("⚠️ Conversion for Forecast under construction 👷🏽🛠💻");
@@ -98,7 +101,8 @@ export default function Conversion(props) {
         <Forecast
           lat={currentData.lat}
           lon={currentData.lon}
-          onClickEvent={clicked}
+          celsiusClicked={celsiusClicked}
+          fahrenheitClicked={fahrenheitClicked}
         />
       </div>
     </div>

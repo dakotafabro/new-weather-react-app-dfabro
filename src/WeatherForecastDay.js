@@ -4,11 +4,18 @@ import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherForecastDay(props) {
   let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  let [clicked, setClicked] = useState(props.onClickEvent);
+  let [celsiusClicked, setCelsiusClicked] = useState(props.celsiusClicked);
+  let [fahrenheitClicked, setFahrenheitClicked] = useState(
+    props.fahrenheitClicked
+  );
 
   useEffect(() => {
-    setClicked(true);
-  }, [props.onClickEvent]);
+    setCelsiusClicked(true);
+  }, [props.celsiusClicked]);
+
+  useEffect(() => {
+    setFahrenheitClicked(true);
+  }, [props.fahrenheitClicked]);
 
   function day() {
     let date = new Date(props.data.dt * 1000);
@@ -37,7 +44,7 @@ export default function WeatherForecastDay(props) {
     return min;
   }
 
-  if (clicked === false) {
+  if (fahrenheitClicked === true && celsiusClicked === false) {
     return (
       <div>
         <span className="WeatherForecastDay mb-1">
@@ -59,7 +66,7 @@ export default function WeatherForecastDay(props) {
         </span>
       </div>
     );
-  } else if (clicked === true) {
+  } else if (fahrenheitClicked === false && celsiusClicked === true) {
     return (
       <div>
         <span className="WeatherForecastDay mb-1">
