@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherIcon from "./WeatherIcon";
+import Forecast from "./Forecast";
 
 export default function Conversion(props) {
   let [speedUnit, setSpeedUnit] = useState("mph");
   let [currentData, setCurrentData] = useState(props.data);
+  let [clicked, setClicked] = useState(false);
   // let currentData = props.data;
 
   function convertToCelsius(event) {
+    setClicked(true);
     setSpeedUnit("km/h");
 
     event.preventDefault();
@@ -37,6 +40,7 @@ export default function Conversion(props) {
     event.preventDefault();
 
     setSpeedUnit("mph");
+    setClicked(false);
 
     setCurrentData(props.data);
     alert("⚠️ Conversion for Forecast under construction 👷🏽🛠💻");
@@ -88,6 +92,14 @@ export default function Conversion(props) {
             <strong>Humidity:</strong> {currentData.humidity}%
           </span>
         </div>
+      </div>
+
+      <div className="col-sm-12">
+        <Forecast
+          lat={currentData.lat}
+          lon={currentData.lon}
+          onClickEvent={clicked}
+        />
       </div>
     </div>
   );

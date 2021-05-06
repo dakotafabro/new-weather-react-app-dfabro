@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Forecast.css";
 import WeatherForecastDay from "./WeatherForecastDay";
@@ -6,6 +6,11 @@ import WeatherForecastDay from "./WeatherForecastDay";
 export default function Forecast(props) {
   let [ready, setReady] = useState(false);
   let [forecast, setForecast] = useState(null);
+  let [clicked, setClicked] = useState(props.onClickEvent);
+
+  useEffect(() => {
+    setClicked(true);
+  }, [props.onClickEvent]);
 
   function displayForecast(response) {
     setForecast(response.data.daily);
@@ -26,22 +31,22 @@ export default function Forecast(props) {
       <div className="Forecast">
         <div className="row mb-3">
           <div className="col-sm mb-3">
-            <WeatherForecastDay data={forecast[0]} />
+            <WeatherForecastDay data={forecast[0]} onClickEvent={clicked} />
           </div>
           <div className="col-sm mb-3">
-            <WeatherForecastDay data={forecast[1]} />
+            <WeatherForecastDay data={forecast[1]} onClickEvent={clicked} />
           </div>
           <div className="col-sm mb-3">
-            <WeatherForecastDay data={forecast[2]} />
+            <WeatherForecastDay data={forecast[2]} onClickEvent={clicked} />
           </div>
           <div className="col-sm mb-3">
-            <WeatherForecastDay data={forecast[3]} />
+            <WeatherForecastDay data={forecast[3]} onClickEvent={clicked} />
           </div>
           <div className="col-sm mb-3">
-            <WeatherForecastDay data={forecast[4]} />
+            <WeatherForecastDay data={forecast[4]} onClickEvent={clicked} />
           </div>
           <div className="col-sm mb-3">
-            <WeatherForecastDay data={forecast[5]} />
+            <WeatherForecastDay data={forecast[5]} onClickEvent={clicked} />
           </div>
         </div>
       </div>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
 import DateAndTime from "./DateAndTime";
-import Forecast from "./Forecast";
 import Conversion from "./Conversion";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -85,8 +84,6 @@ export default function Weather(props) {
         </div>
 
         <Conversion data={weatherData} />
-
-        <Forecast lat={weatherData.lat} lon={weatherData.lon} />
       </div>
     );
   } else {
