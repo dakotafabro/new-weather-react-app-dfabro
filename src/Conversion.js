@@ -56,13 +56,13 @@ export default function Conversion(props) {
         <br />
         <span className="current-temp">{currentData.temp}</span>
         <span className="conversion-links">
-          <a
+          {/* <a
             href="/"
             className="conversion-link-f"
             // onClick={convertToFahrenheit}
-          >
-            F°
-          </a>{" "}
+          > */}
+          °F
+          {/* </a>{" "} */}
           {/* |{" "}
           <a href="/" className="conversion-link-c" onClick={convertToCelsius}>
             C°
