@@ -8,7 +8,7 @@ export default function Footer() {
         href="https://github.com/dakotafabro/new-weather-react-app-dfabro"
         title="GitHub Repo for this project"
       >
-        Open-source code
+        Open-source code on GitHub
       </a>{" "}
       by{" "}
       <a
