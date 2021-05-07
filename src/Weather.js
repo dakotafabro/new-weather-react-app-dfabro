@@ -53,6 +53,22 @@ export default function Weather(props) {
     axios.get(url).then(showWeather);
   }
 
+  function showCurrentCity(response) {
+    let latitude = response.coords.latitude;
+    let longitude = response.coords.longitude;
+    let units = `imperial`;
+    const apiKey = "714ee8260b39daee49f18fcc2cebda82";
+    let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+    console.log(weatherApiUrl);
+
+    axios.get(weatherApiUrl).then(showWeather);
+  }
+
+  function getCurrentCity(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(showCurrentCity);
+  }
+
   if (weatherData.ready === true) {
     return (
       <div className="Weather">
@@ -65,6 +81,12 @@ export default function Weather(props) {
             onChange={updateCity}
           />
           <input className="search-button" type="submit" value="Search" />
+          <input
+            className="current-button"
+            type="submit"
+            value="Current"
+            onClick={getCurrentCity}
+          />
         </form>
 
         <div className="desired-city-info">
