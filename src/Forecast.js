@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./Forecast.css";
 import WeatherForecastDay from "./WeatherForecastDay";
@@ -6,18 +6,18 @@ import WeatherForecastDay from "./WeatherForecastDay";
 export default function Forecast(props) {
   let [ready, setReady] = useState(false);
   let [forecast, setForecast] = useState(null);
-  let [celsiusClicked, setCelsiusClicked] = useState(props.celsiusClicked);
-  let [fahrenheitClicked, setFahrenheitClicked] = useState(
-    props.fahrenheitClicked
-  );
+  // let [celsiusClicked, setCelsiusClicked] = useState(props.celsiusClicked);
+  // let [fahrenheitClicked, setFahrenheitClicked] = useState(
+  //   props.fahrenheitClicked
+  // );
 
-  useEffect(() => {
-    setCelsiusClicked(true);
-  }, [props.celsiusClicked]);
+  // useEffect(() => {
+  //   setCelsiusClicked(true);
+  // }, [props.celsiusClicked]);
 
-  useEffect(() => {
-    setFahrenheitClicked(true);
-  }, [props.fahrenheitClicked]);
+  // useEffect(() => {
+  //   setFahrenheitClicked(true);
+  // }, [props.fahrenheitClicked]);
 
   function displayForecast(response) {
     setForecast(response.data.daily);
@@ -43,9 +43,9 @@ export default function Forecast(props) {
   }
 
   if (
-    ready === true &&
-    fahrenheitClicked === true &&
-    celsiusClicked === false
+    ready === true
+    // fahrenheitClicked === true &&
+    // celsiusClicked === false
   ) {
     loadFahrenheit();
     return (
@@ -54,46 +54,46 @@ export default function Forecast(props) {
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[0]}
-              fahrenheitClicked={fahrenheitClicked}
+              // fahrenheitClicked={fahrenheitClicked}
             />
           </div>
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[1]}
-              fahrenheitClicked={fahrenheitClicked}
+              // fahrenheitClicked={fahrenheitClicked}
             />
           </div>
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[2]}
-              fahrenheitClicked={fahrenheitClicked}
+              // fahrenheitClicked={fahrenheitClicked}
             />
           </div>
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[3]}
-              fahrenheitClicked={fahrenheitClicked}
+              // fahrenheitClicked={fahrenheitClicked}
             />
           </div>
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[4]}
-              fahrenheitClicked={fahrenheitClicked}
+              // fahrenheitClicked={fahrenheitClicked}
             />
           </div>
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[5]}
-              fahrenheitClicked={fahrenheitClicked}
+              // fahrenheitClicked={fahrenheitClicked}
             />
           </div>
         </div>
       </div>
     );
   } else if (
-    ready === true &&
-    celsiusClicked === true &&
-    fahrenheitClicked === false
+    ready === true
+    // celsiusClicked === true &&
+    // fahrenheitClicked === false
   ) {
     loadCelsius();
     return (
@@ -102,37 +102,37 @@ export default function Forecast(props) {
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[0]}
-              celsiusClicked={celsiusClicked}
+              // celsiusClicked={celsiusClicked}
             />
           </div>
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[1]}
-              celsiusClicked={celsiusClicked}
+              // celsiusClicked={celsiusClicked}
             />
           </div>
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[2]}
-              celsiusClicked={celsiusClicked}
+              // celsiusClicked={celsiusClicked}
             />
           </div>
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[3]}
-              celsiusClicked={celsiusClicked}
+              // celsiusClicked={celsiusClicked}
             />
           </div>
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[4]}
-              celsiusClicked={celsiusClicked}
+              // celsiusClicked={celsiusClicked}
             />
           </div>
           <div className="col-sm mb-3">
             <WeatherForecastDay
               data={forecast[5]}
-              celsiusClicked={celsiusClicked}
+              // celsiusClicked={celsiusClicked}
             />
           </div>
         </div>
