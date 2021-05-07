@@ -6,12 +6,12 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
-  let [defaultCity, setDefaultCity] = useState(null);
-  let [ready, setReady] = useState(false);
+  // let [defaultCity, setDefaultCity] = useState(null);
+  let [ready, setReady] = useState(true);
 
   function getCity(response) {
     console.log(response.data.name);
-    setDefaultCity(response.data.name);
+    // setDefaultCity(response.data.name);
     setReady(true);
   }
 
@@ -33,7 +33,7 @@ export default function App() {
     return (
       <div className="container App border p-2 mt-2 mb-2 shadow">
         <div>
-          <Weather defaultCity={defaultCity} />
+          <Weather defaultCity="Los Angeles" />
         </div>
 
         <div className="mb-3 mt-3">
