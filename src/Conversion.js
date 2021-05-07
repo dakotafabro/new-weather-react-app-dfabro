@@ -1,51 +1,51 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
+// import axios from "axios";
 import WeatherIcon from "./WeatherIcon";
 import Forecast from "./Forecast";
 
 export default function Conversion(props) {
-  let [speedUnit, setSpeedUnit] = useState("mph");
-  let [currentData, setCurrentData] = useState(props.data);
+  // let [speedUnit, setSpeedUnit] = useState("mph");
+  // let [currentData, setCurrentData] = useState(props.data);
   // let [celsiusClicked, setCelsiusClicked] = useState(false);
   // let [fahrenheitClicked, setFahrenheitClicked] = useState(false);
-  // let currentData = props.data;
+  let currentData = props.data;
 
-  function convertToCelsius(event) {
-    // setCelsiusClicked(true);
-    // setFahrenheitClicked(false);
-    setSpeedUnit("km/h");
+  // function convertToCelsius(event) {
+  //   // setCelsiusClicked(true);
+  //   // setFahrenheitClicked(false);
+  //   setSpeedUnit("km/h");
 
-    event.preventDefault();
-    alert("Conversion under construction 👷🏽🛠💻");
+  //   event.preventDefault();
+  //   alert("Conversion for forecast under construction 👷🏽🛠💻");
 
-    let units = "metric";
-    const apiKey = "714ee8260b39daee49f18fcc2cebda82";
-    let celsiusUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.data.city}&appid=${apiKey}&units=${units}`;
+  //   let units = "metric";
+  //   const apiKey = "714ee8260b39daee49f18fcc2cebda82";
+  //   let celsiusUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.data.city}&appid=${apiKey}&units=${units}`;
 
-    axios.get(celsiusUrl).then(convertToMetric);
-  }
+  //   axios.get(celsiusUrl).then(convertToMetric);
+  // }
 
-  function convertToMetric(response) {
-    setCurrentData({
-      description: response.data.weather[0].description.toUpperCase(),
-      wind: Math.round(response.data.wind.speed),
-      feelsLike: Math.round(response.data.main.feels_like),
-      lowTemp: Math.round(response.data.main.temp_min),
-      highTemp: Math.round(response.data.main.temp_max),
-      temp: Math.round(response.data.main.temp),
-      humidity: response.data.main.humidity,
-    });
-  }
+  // function convertToMetric(response) {
+  //   setCurrentData({
+  //     description: response.data.weather[0].description.toUpperCase(),
+  //     wind: Math.round(response.data.wind.speed),
+  //     feelsLike: Math.round(response.data.main.feels_like),
+  //     lowTemp: Math.round(response.data.main.temp_min),
+  //     highTemp: Math.round(response.data.main.temp_max),
+  //     temp: Math.round(response.data.main.temp),
+  //     humidity: response.data.main.humidity,
+  //   });
+  // }
 
-  function convertToFahrenheit(event) {
-    event.preventDefault();
-    alert("Conversion under construction 👷🏽🛠💻");
-    setSpeedUnit("mph");
-    // setCelsiusClicked(false);
-    // setFahrenheitClicked(true);
+  // function convertToFahrenheit(event) {
+  //   event.preventDefault();
+  //   alert("Conversion under construction 👷🏽🛠💻");
+  //   setSpeedUnit("mph");
+  //   // setCelsiusClicked(false);
+  //   // setFahrenheitClicked(true);
 
-    setCurrentData(props.data);
-  }
+  //   setCurrentData(props.data);
+  // }
 
   return (
     <div className="row weather-info">
@@ -59,14 +59,14 @@ export default function Conversion(props) {
           <a
             href="/"
             className="conversion-link-f"
-            onClick={convertToFahrenheit}
+            // onClick={convertToFahrenheit}
           >
             F°
           </a>{" "}
-          |{" "}
+          {/* |{" "}
           <a href="/" className="conversion-link-c" onClick={convertToCelsius}>
             C°
-          </a>
+          </a> */}
         </span>
         <br />
         <span className="high-and-low-temp low-temp">
@@ -86,7 +86,7 @@ export default function Conversion(props) {
           </span>
           <br />
           <span>
-            <strong>Wind:</strong> {currentData.wind} {speedUnit}
+            <strong>Wind:</strong> {currentData.wind} mph
           </span>
           <br />
           <span>
