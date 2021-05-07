@@ -9,6 +9,7 @@ export default function Conversion(props) {
   // let [celsiusClicked, setCelsiusClicked] = useState(false);
   // let [fahrenheitClicked, setFahrenheitClicked] = useState(false);
   let currentData = props.data;
+  let speedUnit = "mph";
 
   // function convertToCelsius(event) {
   //   // setCelsiusClicked(true);
@@ -86,7 +87,7 @@ export default function Conversion(props) {
           </span>
           <br />
           <span>
-            <strong>Wind:</strong> {currentData.wind} mph
+            <strong>Wind:</strong> {currentData.wind} {speedUnit}
           </span>
           <br />
           <span>
