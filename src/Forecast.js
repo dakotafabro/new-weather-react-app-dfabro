@@ -24,14 +24,14 @@ export default function Forecast(props) {
     setReady(true);
   }
 
-  function loadCelsius() {
-    let lat = props.lat;
-    let lon = props.lon;
-    let units = "metric";
-    let apiKey = "714ee8260b39daee49f18fcc2cebda82";
-    let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-    axios.get(forecastUrl).then(displayForecast);
-  }
+  // function loadCelsius() {
+  //   let lat = props.lat;
+  //   let lon = props.lon;
+  //   let units = "metric";
+  //   let apiKey = "714ee8260b39daee49f18fcc2cebda82";
+  //   let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+  //   axios.get(forecastUrl).then(displayForecast);
+  // }
 
   function loadFahrenheit() {
     let lat = props.lat;
@@ -47,7 +47,6 @@ export default function Forecast(props) {
     // fahrenheitClicked === true &&
     // celsiusClicked === false
   ) {
-    loadFahrenheit();
     return (
       <div className="Forecast">
         <div className="row mb-3">
@@ -85,54 +84,6 @@ export default function Forecast(props) {
             <WeatherForecastDay
               data={forecast[5]}
               // fahrenheitClicked={fahrenheitClicked}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  } else if (
-    ready === true
-    // celsiusClicked === true &&
-    // fahrenheitClicked === false
-  ) {
-    loadCelsius();
-    return (
-      <div className="Forecast">
-        <div className="row mb-3">
-          <div className="col-sm mb-3">
-            <WeatherForecastDay
-              data={forecast[0]}
-              // celsiusClicked={celsiusClicked}
-            />
-          </div>
-          <div className="col-sm mb-3">
-            <WeatherForecastDay
-              data={forecast[1]}
-              // celsiusClicked={celsiusClicked}
-            />
-          </div>
-          <div className="col-sm mb-3">
-            <WeatherForecastDay
-              data={forecast[2]}
-              // celsiusClicked={celsiusClicked}
-            />
-          </div>
-          <div className="col-sm mb-3">
-            <WeatherForecastDay
-              data={forecast[3]}
-              // celsiusClicked={celsiusClicked}
-            />
-          </div>
-          <div className="col-sm mb-3">
-            <WeatherForecastDay
-              data={forecast[4]}
-              // celsiusClicked={celsiusClicked}
-            />
-          </div>
-          <div className="col-sm mb-3">
-            <WeatherForecastDay
-              data={forecast[5]}
-              // celsiusClicked={celsiusClicked}
             />
           </div>
         </div>

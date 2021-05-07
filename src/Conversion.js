@@ -1,7 +1,6 @@
 import React from "react";
 // import axios from "axios";
 import WeatherIcon from "./WeatherIcon";
-import Forecast from "./Forecast";
 
 export default function Conversion(props) {
   // let [speedUnit, setSpeedUnit] = useState("mph");
@@ -94,15 +93,6 @@ export default function Conversion(props) {
             <strong>Humidity:</strong> {currentData.humidity}%
           </span>
         </div>
-      </div>
-
-      <div className="col-sm-12">
-        <Forecast
-          lat={currentData.lat}
-          lon={currentData.lon}
-          // celsiusClicked={celsiusClicked}
-          // fahrenheitClicked={fahrenheitClicked}
-        />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import Conversion from "./Conversion";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import WeatherIcon from "./WeatherIcon";
+import Forecast from "./Forecast";
 
 export default function Weather(props) {
   let [weatherData, setWeatherData] = useState({ ready: false });
@@ -84,6 +85,13 @@ export default function Weather(props) {
         </div>
 
         <Conversion data={weatherData} />
+
+        <Forecast
+          lat={weatherData.lat}
+          lon={weatherData.lon}
+          // celsiusClicked={celsiusClicked}
+          // fahrenheitClicked={fahrenheitClicked}
+        />
       </div>
     );
   } else {
