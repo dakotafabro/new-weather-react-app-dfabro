@@ -133,7 +133,7 @@ export default function Weather(props) {
         <input
           className="current-button mt-3 mb-3"
           type="submit"
-          value="Click for Current City"
+          value="See Weather For Current City"
           onClick={getCurrentCity}
         />
       </div>
