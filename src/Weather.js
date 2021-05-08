@@ -124,17 +124,18 @@ export default function Weather(props) {
 
     return (
       <div className="loader">
+        <div className="loading-page">Waiting...</div>
+
+        <div>
+          <Loader type="Rings" color="#4646f8" height={160} width={160} />
+        </div>
+
         <input
           className="current-button mt-3 mb-3"
           type="submit"
           value="Click for Current City"
           onClick={getCurrentCity}
         />
-        <div className="loading-page">Waiting...</div>
-
-        <div>
-          <Loader type="Rings" color="#4646f8" height={160} width={160} />
-        </div>
       </div>
     );
   }
