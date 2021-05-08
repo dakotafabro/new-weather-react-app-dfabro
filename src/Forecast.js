@@ -11,15 +11,8 @@ export default function Forecast(props) {
   //   props.fahrenheitClicked
   // );
 
-  // useEffect(() => {
-  //   setCelsiusClicked(true);
-  // }, [props.celsiusClicked]);
-
-  // useEffect(() => {
-  //   setFahrenheitClicked(true);
-  // }, [props.fahrenheitClicked]);
-
   function displayForecast(response) {
+    console.log(response.data.daily);
     setForecast(response.data.daily);
     setReady(true);
   }
@@ -39,6 +32,8 @@ export default function Forecast(props) {
     let units = "imperial";
     let apiKey = "714ee8260b39daee49f18fcc2cebda82";
     let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+    console.log(forecastUrl);
+
     axios.get(forecastUrl).then(displayForecast);
   }
 

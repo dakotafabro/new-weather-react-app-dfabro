@@ -45,15 +45,18 @@ export default function Weather(props) {
     axios.get(url).then(showWeather);
   }
 
-  function search() {
-    let units = "imperial";
-    const apiKey = "714ee8260b39daee49f18fcc2cebda82";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  // function search() {
+  //   let units = "imperial";
+  //   const apiKey = "714ee8260b39daee49f18fcc2cebda82";
+  //   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
-    axios.get(url).then(showWeather);
-  }
+  //   axios.get(url).then(showWeather);
+  // }
 
   function showCurrentCity(response) {
+    // setWeatherData({ ready: false });
+    // setCity(null);
+
     let latitude = response.coords.latitude;
     let longitude = response.coords.longitude;
     let units = `imperial`;
@@ -81,12 +84,12 @@ export default function Weather(props) {
             onChange={updateCity}
           />
           <input className="search-button" type="submit" value="Search" />
-          <input
+          {/* <input
             className="current-button"
             type="submit"
             value="Current"
             onClick={getCurrentCity}
-          />
+          /> */}
         </form>
 
         <div className="desired-city-info">
@@ -117,11 +120,18 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    search();
+    // search();
 
     return (
       <div className="loader">
+        <input
+          className="current-button mt-3 mb-3"
+          type="submit"
+          value="Click for Current City"
+          onClick={getCurrentCity}
+        />
         <div className="loading-page">Loading...</div>
+
         <div>
           <Loader type="Rings" color="#4646f8" height={160} width={160} />
         </div>
