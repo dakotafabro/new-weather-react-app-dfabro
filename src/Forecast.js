@@ -47,12 +47,6 @@ export default function Forecast(props) {
         <div className="row mb-3">
           <div className="col-sm mb-3">
             <WeatherForecastDay
-              data={forecast[0]}
-              // fahrenheitClicked={fahrenheitClicked}
-            />
-          </div>
-          <div className="col-sm mb-3">
-            <WeatherForecastDay
               data={forecast[1]}
               // fahrenheitClicked={fahrenheitClicked}
             />
